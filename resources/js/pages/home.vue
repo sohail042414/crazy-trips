@@ -11,7 +11,7 @@
 <script>
 // import axios from 'axios'
 export default {
-  middleware: 'auth',
+  //middleware: 'auth',
 
   // async asyncData () {
   //   const { data: projects } = await axios.get('/api/projects')

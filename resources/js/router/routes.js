@@ -22,6 +22,11 @@ export default [
       { path: 'password', name: 'settings.password', component: page('settings/password.vue') }
     ]
   },
-
+  { path: '/about', name: 'about', component: page('about.vue') },
+  { path: '/services', name: 'services', component: page('services.vue') },
+  { path: '/portfolio', name: 'portfolio', component: page('portfolio.vue') },
+  { path: '/team', name: 'team', component: page('team.vue') },
+  { path: '/contact-us', name: 'contact-us', component: page('contact-us.vue') },
+  
   { path: '*', component: page('errors/404.vue') }
 ]

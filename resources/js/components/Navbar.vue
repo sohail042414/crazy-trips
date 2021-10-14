@@ -1,6 +1,6 @@
 <template>
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+  <header id="header" class="fixed-top" v-bind:class="{ 'header-inner-pages':!homepage  }">
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto">
@@ -13,12 +13,38 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <li>
+            <router-link :to="{ name:'home'}" class="nav-link" v-bind:class="{ 'active':($route.name=='home' || $route.name=='welcome')  }">
+              Home
+            </router-link>  
+          </li>
+          <li>
+            <router-link :to="{ name:'about'}" class="nav-link" v-bind:class="{ 'active':($route.name=='about')  }">
+              About
+            </router-link>         
+          </li>
+          <li>
+            <router-link :to="{ name:'services'}" class="nav-link" v-bind:class="{ 'active':($route.name=='services')  }">
+              Services
+            </router-link>  
+          </li>
+          <li>
+            <router-link :to="{ name:'portfolio'}" class="nav-link" v-bind:class="{ 'active':($route.name=='portfolio')  }">
+              Portfolio
+            </router-link>  
+          </li>
+          <li>
+            <router-link :to="{ name:'team'}" class="nav-link" v-bind:class="{ 'active':($route.name=='team')  }">
+              Team
+            </router-link>  
+          </li>
+          <li>
+            <router-link :to="{ name:'contact-us'}" class="nav-link" v-bind:class="{ 'active':($route.name=='contact-us')  }">
+              Contact Us
+            </router-link>  
+          </li>
+
+          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -34,8 +60,8 @@
               <li><a href="#">Drop Down 3</a></li>
               <li><a href="#">Drop Down 4</a></li>
             </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          </li> -->
+          
           <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -56,13 +82,22 @@ export default {
   },
 
   data: () => ({
-    appName: window.config.appName
+    appName: window.config.appName,
+    homepage:false,
   }),
 
   computed: mapGetters({
     user: 'auth/user'
   }),
-
+  watch: {
+    '$route' () {
+      if (this.$route.path === '/') {
+        this.homepage = true;
+      }else{
+        this.homepage = false;
+      }
+    }
+  },
   methods: {
     async logout () {
       // Log out the user.

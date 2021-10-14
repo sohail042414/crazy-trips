@@ -77,8 +77,8 @@
   /**
    * Toggle .header-scrolled class to #header when page is scrolled
    */
-  //let selectHeader = select('#header')
-  let selectHeader = document.querySelector('header');
+  let selectHeader = select('#header')
+  //let selectHeader = document.querySelector('header');
   //console.log(selectHeader);
   if (selectHeader) {
     const headerScrolled = () => {
@@ -88,7 +88,7 @@
         selectHeader.classList.remove('header-scrolled')
       }
     }
-    window.addEventListener('load', headerScrolled)
+    //window.addEventListener('load', headerScrolled)
     onscroll(document, headerScrolled)
   }
 
